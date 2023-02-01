@@ -9,7 +9,6 @@ services:
       - MARIADB_DATABASE=wordpress
     ports:
        - "3306:3306"
-       - "80:80"
     volumes:
        - ./mariadb-data:/var/lib/mysql
 
