@@ -7,14 +7,19 @@ services:
       - MARIADB_PASSWORD=my_cool_secret
       - MARIADB_ROOT_PASSWORD=sinensia
       - MARIADB_DATABASE=wordpress
-    ports:
-       - "3306:3306"
+#    ports:
+#       - "3306:3306"
     volumes:
        - ./mariadb-data:/var/lib/mysql
 
-  apache:
-    image: httpd:latest
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: example-user
+      WORDPRESS_DB_PASSWORD: my_cool_secret
+      WORDPRESS_DB_NAME: wordpress
     ports:
        - "80:80"
     volumes:
-       - ./htdocs:/usr/local/apache2/htdocs
+       - ./htdocs:/var/www/html
