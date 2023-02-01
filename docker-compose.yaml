@@ -9,5 +9,13 @@ services:
       - MARIADB_DATABASE=wordpress
     ports:
        - "3306:3306"
+       - "80:80"
     volumes:
        - ./mariadb-data:/var/lib/mysql
+
+  apache:
+    image: httpd:latest
+    ports:
+       - "80:80"
+    volumes:
+       - ./htdocs:/usr/local/apache2/htdocs
